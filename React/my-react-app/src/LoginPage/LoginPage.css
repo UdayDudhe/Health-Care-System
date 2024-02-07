@@ -20,8 +20,8 @@
   margin-bottom: 20px; 
 }
 
-legend{
-    text-align: center;
+#login-label{
+  font-size: 25px;
 }
 
 form{

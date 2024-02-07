@@ -6,7 +6,7 @@ function LoginPage() {
   return (
     <>
       <div className="form-Container">
-        <legend>Login</legend>
+        <span id="login-label">Login</span>
 
         <form>
           <div className="form-group">

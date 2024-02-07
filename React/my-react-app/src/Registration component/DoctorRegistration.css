@@ -1,0 +1,44 @@
+.registration-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.form-horizontal {
+  max-width: 500px;
+  width: 100%;
+}
+
+.table td {
+  padding: 8px;
+}
+
+.legend {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-help {
+  color: rgb(241, 94, 94);
+}
+
+legend {
+  margin: 50px;
+  font-size: 30px;
+  text-align: center;
+}
