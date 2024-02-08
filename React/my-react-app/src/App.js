@@ -1,18 +1,21 @@
-import LoginPage from './LoginPage/LoginPage';
 import './App.css';
-import PatientRegistration from './Registration component/PatientRegistration';
-import DoctorRegistration from './Registration component/DoctorRegistration';
+import DoctorRegistration from './Components/Registration component/DoctorRegistration.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LoginPage from './Components/LoginPage/LoginPage';
+import PatientRegistration from './Components/Registration component/PatientRegistration.jsx';
+import NavLinks from './Components/NavBar/NavLinks.jsx';
+
 
 function App() {
   return (
     <>
      <BrowserRouter>
+      <NavLinks/>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/" element={<LoginPage/>} />
 
-        <Route path="/doc-reg" element={<DoctorRegistration />} />
-        <Route path="/pat-reg" element={<PatientRegistration />} />
+        <Route path="/doc-reg" element={<DoctorRegistration/>} />
+        <Route path="/pat-reg" element={<PatientRegistration/>} />
 
       </Routes>
     </BrowserRouter>
