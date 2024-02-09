@@ -17,18 +17,19 @@ function NavLinks() {
         <div>
           {location.pathname === "/" && (
             <>
-              <Link className="navbar-text" to="/doc-reg">
-                Register Doctor
-              </Link>
-              <Link className="navbar-text" to="/doc-reg">
-                Register Patient
-              </Link>
-          
+              <div class="right-block">
+                <Link className="navbar-text" to="/doc-reg">
+                  Register Doctor
+                </Link>
+                <Link className="navbar-text" to="/pat-reg">
+                  Register Patient
+                </Link>
+              </div>
             </>
           )}
           {location.pathname === "/doc-reg" && (
             <>
-               <Link className="navbar-text" to="/">
+              <Link className="navbar-text" to="/">
                 Login
               </Link>
             </>
