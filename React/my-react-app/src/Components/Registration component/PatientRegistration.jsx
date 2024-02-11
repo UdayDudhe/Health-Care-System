@@ -45,32 +45,53 @@ function PatientRegistration() {
     let error="";
     switch(key){
         case "username":
-        let patternusername = /^[A-Z]{1}[a-z]{1,}$/;
+        let patternusername =/^[a-zA-Z0-9]+$/;
         if (!patternusername.test(val)) {
           valid = false;
-          error = "Enter Your First Name and Only Letters Allow";
+          error = "Enter Valid User Name";
         }
         break;case "password":
-        let patternpassword = /^[A-Z]{1}[a-z]{1,}$/;
+        let patternpassword =  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
         if (!patternpassword.test(val)) {
           valid = false;
-          error = "Enter Your First Name and Only Letters Allow";
+          error = "Enter Valid Password";
         }
         break;
         case "firstName":
         let patterfirstName = /^[A-Z]{1}[a-z]{1,}$/;
         if (!patterfirstName.test(val)) {
           valid = false;
-          error = "Enter Your First Name and Only Letters Allow";
+          error = "Must start with an uppercase letter";
         }
         break;
         case "lastName":
         let patternlastName = /^[A-Z]{1}[a-z]{1,}$/;
         if (!patternlastName.test(val)) {
           valid = false;
-          error = "Enter Your Last Name and Only Letters Allow";
+          error = "Must start with an uppercase letter";
         }
         break;
+        case "email":
+        let patternEmail = /^[a-zA-Z0-9.]+@[a-zA-Z]+\.[a-zA-Z]{2,3}$/;
+        if (!patternEmail.test(val)) {
+          valid = false;
+          error = "Please enter a valid email address";
+        }
+        break;
+        case "address":
+          let patternAddress = /^[A-Z]{1}[a-z]{1,}$/;
+          if (!patternAddress.test(val)) {
+            valid = false;
+            error = "Please Enter Valid Address";
+          }
+          break;
+          case "contactNo":
+            let patterContact =/^\d{10}$/;
+            if (!patterContact.test(val)) {
+              valid = false;
+              error = "Please Enter Valid Contact Number";
+            }
+
         default:
       }
       return {valid:valid,error:error};
@@ -116,12 +137,12 @@ function PatientRegistration() {
                     className="form-control"
                     id="userName"
                     name="userName"
-                    value={user.userName.value}
+                    value={user.username.value}
                     onChange={(e) => {
-                      handleChange("userName", e.target.value);
+                      handleChange("username", e.target.value);
                     }}
                     onBlur={(e) => {
-                      handleChange("userName", e.target.value);
+                      handleChange("username", e.target.value);
                     }}
                     placeholder="Raj"
                     required
@@ -130,13 +151,49 @@ function PatientRegistration() {
                   <div
                     style={{
                       display:
-                        user.userName.touched && !user.userName.valid
+                        user.username.touched && !user.username.valid
                           ? "block"
                           : "none",
                       color: "red",
                     }}
                   >
-                    {user.userName.error}
+                    {user.username.error}
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label className="control-label" htmlFor="firstName">
+                    Password
+                  </label>
+                </td>
+                <td>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="password"
+                    name="password"
+                    value={user.password.value}
+                    onChange={(e) => {
+                      handleChange("password", e.target.value);
+                    }}
+                    onBlur={(e) => {
+                      handleChange("password", e.target.value);
+                    }}
+                    placeholder="Rajsharma@123"
+                    required
+                  />
+
+                  <div
+                    style={{
+                      display:
+                        user.password.touched && !user.password.valid
+                          ? "block"
+                          : "none",
+                      color: "red",
+                    }}
+                  >
+                    {user.password.error}
                   </div>
                 </td>
               </tr>
@@ -358,6 +415,17 @@ function PatientRegistration() {
                   </button>
                 </td>
               </tr>
+              <td colSpan="2" className="text-center">
+                  <button
+                    type="reset"
+                    className="btn btn-primary"
+                    onClick={() => {
+                      dispatch({ type: "reset" });
+                    }}
+                  >
+                    Reset
+                  </button>
+                </td>
             </tbody>
           </table>
         </form>
