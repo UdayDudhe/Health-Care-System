@@ -34,8 +34,15 @@ function LoginPage() {
       body: JSON.stringify(info),
     };
     fetch("http://localhost:8080/verifyLogin", reqOptions)
+      .then((resp) => {
+        if (resp.ok) {
+          return resp.text();
+        } else {
+          throw new Error("Service Error");
+        }
+      })
       // .then((resp) => console.log(resp))
-      .then((resp) => resp.text())
+      // .then((resp) => resp.text())
       .then((text) => (text.length ? JSON.parse(text) : {}))
       .then((obj) => {
         if (Object.keys(obj).length === 0) {
@@ -45,17 +52,19 @@ function LoginPage() {
             alert("req not approved");
           } else {
             if (obj.role_id.roleid === 1) {
-              navigate('/adminHome')
+              navigate("/adminHome");
             } else if (obj.role_id.roleid === 2) {
-              navigate('/docHome')
+              navigate("/docHome");
             } else if (obj.role_id.roleid === 3) {
-              navigate('/patientHome')
-
+              navigate("/patientHome");
             }
           }
         }
+      })
+      .catch((error) => {
+        alert("Server Error");
       });
-      //.then((obj)=>{console.log(obj)})
+    //.then((obj)=>{console.log(obj)})
   };
 
   return (
@@ -73,7 +82,11 @@ function LoginPage() {
               className="form-control"
               value={info.username}
               onChange={(e) => {
-                dispatch({ type: "update", fld: "username", val: e.target.value });
+                dispatch({
+                  type: "update",
+                  fld: "username",
+                  val: e.target.value,
+                });
               }}
             />
           </div>
@@ -87,26 +100,25 @@ function LoginPage() {
               className="form-control"
               value={info.password}
               onChange={(e) => {
-                dispatch({ type: "update", fld: "password", val: e.target.value });
+                dispatch({
+                  type: "update",
+                  fld: "password",
+                  val: e.target.value,
+                });
               }}
             />
           </div>
-          {msg}
+          <div className="error">{msg}</div>
 
-          <button
-            type=""
-            className="btn btn-primary"
-            onClick={(e) => sendData(e)}
-          >
-            Submit
-          </button>
-          <button
-            type=""
-            className="btn btn-primary"
-            onClick={() => dispatch({ type: "reset" })}
-          >
-            Reset
-          </button>
+          <div className="button-container">
+            <button
+              type=""
+              className="btn btn-primary"
+              onClick={(e) => sendData(e)}
+            >
+              Submit
+            </button>
+          </div>
         </form>
       </div>
     </>
