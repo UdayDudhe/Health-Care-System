@@ -483,14 +483,13 @@ function DoctorRegistration() {
                 </td>
               </tr>
               <tr>
-                <td colSpan="2" className="text-center">
+                <td colSpan="1" className="button-center">
                   <button type="submit" className="btn btn-primary">
                     Register
                   </button>
                 </td>
-              </tr>
-              <tr>
-                <td colSpan="2" className="text-center">
+
+                <td colSpan="1" className="button-center">
                   <button
                     type="reset"
                     className="btn btn-primary"

@@ -40,77 +40,78 @@ function PatientRegistration() {
   };
   const [user, dispatch] = useReducer(reducer, init);
 
-  const validateData=(key,val)=>{
+  const validateData = (key, val) => {
     let valid = true;
-    let error="";
-    switch(key){
-        case "username":
-        let patternusername =/^[a-zA-Z0-9]+$/;
+    let error = "";
+    switch (key) {
+      case "username":
+        let patternusername = /^[a-zA-Z0-9]+$/;
         if (!patternusername.test(val)) {
           valid = false;
           error = "Enter Valid User Name";
         }
-        break;case "password":
-        let patternpassword =  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        break;
+      case "password":
+        let patternpassword =
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
         if (!patternpassword.test(val)) {
           valid = false;
           error = "Enter Valid Password";
         }
         break;
-        case "firstName":
+      case "firstName":
         let patterfirstName = /^[A-Z]{1}[a-z]{1,}$/;
         if (!patterfirstName.test(val)) {
           valid = false;
           error = "Must start with an uppercase letter";
         }
         break;
-        case "lastName":
+      case "lastName":
         let patternlastName = /^[A-Z]{1}[a-z]{1,}$/;
         if (!patternlastName.test(val)) {
           valid = false;
           error = "Must start with an uppercase letter";
         }
         break;
-        case "email":
+      case "email":
         let patternEmail = /^[a-zA-Z0-9.]+@[a-zA-Z]+\.[a-zA-Z]{2,3}$/;
         if (!patternEmail.test(val)) {
           valid = false;
           error = "Please enter a valid email address";
         }
         break;
-        case "address":
-          let patternAddress = /^[A-Z]{1}[a-z]{1,}$/;
-          if (!patternAddress.test(val)) {
-            valid = false;
-            error = "Please Enter Valid Address";
-          }
-          break;
-          case "contactNo":
-            let patterContact =/^\d{10}$/;
-            if (!patterContact.test(val)) {
-              valid = false;
-              error = "Please Enter Valid Contact Number";
-            }
+      case "address":
+        let patternAddress = /^[A-Z]{1}[a-z]{1,}$/;
+        if (!patternAddress.test(val)) {
+          valid = false;
+          error = "Please Enter Valid Address";
+        }
+        break;
+      case "contactNo":
+        let patterContact = /^\d{10}$/;
+        if (!patterContact.test(val)) {
+          valid = false;
+          error = "Please Enter Valid Contact Number";
+        }
 
-        default:
-      }
-      return {valid:valid,error:error};
+      default:
+    }
+    return { valid: valid, error: error };
   };
-  const handleChange=(key,value)=>{
-    const {valid,error}=validateData(key,value);
-    let formValid=true;
-    for(let k in user)
-    {
-      if(user[k].valid===false){
-        formValid=false;
+  const handleChange = (key, value) => {
+    const { valid, error } = validateData(key, value);
+    let formValid = true;
+    for (let k in user) {
+      if (user[k].valid === false) {
+        formValid = false;
         break;
       }
     }
     console.log(formValid);
 
     dispatch({
-      type:"update",
-      data:{key,value,touched:true,valid,error,formValid},
+      type: "update",
+      data: { key, value, touched: true, valid, error, formValid },
     });
   };
   return (
@@ -147,7 +148,7 @@ function PatientRegistration() {
                     placeholder="Raj"
                     required
                   />
-              
+
                   <div
                     style={{
                       display:
@@ -409,13 +410,12 @@ function PatientRegistration() {
                 </td>
               </tr>
               <tr>
-                <td colSpan="2" className="text-center">
+                <td colSpan="1" className="button-center">
                   <button type="submit" className="btn btn-primary">
                     Register
                   </button>
                 </td>
-              </tr>
-              <td colSpan="2" className="text-center">
+                <td colSpan="1" className="button-center">
                   <button
                     type="reset"
                     className="btn btn-primary"
@@ -426,6 +426,7 @@ function PatientRegistration() {
                     Reset
                   </button>
                 </td>
+              </tr>
             </tbody>
           </table>
         </form>
