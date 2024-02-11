@@ -41,6 +41,13 @@ function NavLinks() {
               </Link>
             </>
           )}
+             {location.pathname.endsWith("Home") && (
+            <>
+              <Link className="navbar-text" to="/">
+                Logout
+              </Link>
+            </>
+          )}
         </div>
       </nav>
     </>
