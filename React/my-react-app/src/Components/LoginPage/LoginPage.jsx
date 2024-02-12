@@ -49,7 +49,7 @@ function LoginPage() {
           setMsg("Account not found");
         } else {
           if (obj.id_approved === false) {
-            alert("req not approved");
+           setMsg("Request not approved");
           } else {
             if (obj.role_id.roleid === 1) {
               navigate("/adminHome");
