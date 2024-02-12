@@ -12,6 +12,9 @@ function DoctorRegistration() {
     firstName: { value: "", valid: false, touched: false, error: "" },
     lastName: { value: "", valid: false, touched: false, error: "" },
     address: { value: "", valid: false, touched: false, error: "" },
+    // city: { value: "", valid: false, touched: false, error: "" },
+    // state: { value: "", valid: false, touched: false, error: "" },
+    pincode: { value: "", valid: false, touched: false, error: "" },
     contactNo: { value: "", valid: false, touched: false, error: "" },
     email: { value: "", valid: false, touched: false, error: "" },
     gender: {
@@ -20,10 +23,10 @@ function DoctorRegistration() {
       touched: false,
       error: "Please Select a Gender",
     },
-    description: { value: "", valid: false, touched: false, error: "" },
-    Specialization: { value: "", valid: false, touched: false, error: "" },
+    // description: { value: "", valid: false, touched: false, error: "" },
+    // Specialization: { value: "", valid: false, touched: false, error: "" },
     // Education: { value: "", valid: false, touched: false, error: "" },
-    experience: { value: "", valid: false, touched: false, error: "" },
+    // experience: { value: "", valid: false, touched: false, error: "" },
   };
 
   const reducer = (state, action) => {
@@ -78,6 +81,13 @@ function DoctorRegistration() {
         if (!patternaddress.test(val)) {
           valid = false;
           error = "Please Enter Valid Address";
+        }
+        break;
+        case "pincode":
+        let patternpincode = /^[0-9]{1,6}$/;
+        if (!patternpincode.test(val)) {
+          valid = false;
+          error = "Please Enter Valid Pincode";
         }
         break;
       case "contactNo":
@@ -309,6 +319,78 @@ function DoctorRegistration() {
               </tr>
               <tr>
                 <td>
+                  <label className="control-label" htmlFor="city">
+                    City
+                  </label>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="city"
+                    name="city"
+                    placeholder="Pune"
+                    required
+                  />
+                  <small className="text-help">Required</small>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label className="control-label" htmlFor="state">
+                    State
+                  </label>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="state"
+                    name="state"
+                    placeholder="Maharashtra"
+                    required
+                  />
+                  <small className="text-help">Required</small>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label className="control-label" htmlFor="pincode">
+                    Pincode
+                  </label>
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    className="form-control"
+                    id="pincode"
+                    name="pincode"
+                    placeholder="412354"
+                    value={user.pincode.value}
+                    onChange={(e) => {
+                      handleChange("pincode", e.target.value);
+                    }}
+                    onBlur={(e) => {
+                      handleChange("pincode", e.target.value);
+                    }}
+                    required
+                    maxLength={6}
+                  />
+                  <div
+                    style={{
+                      display:
+                        user.pincode.touched && !user.pincode.valid
+                          ? "block"
+                          : "none",
+                      color: "red",
+                    }}
+                  >
+                    {user.pincode.error}
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
                   <label className="control-label" htmlFor="contactNo">
                     Contact No
                   </label>
@@ -398,6 +480,17 @@ function DoctorRegistration() {
                   </select>
                   <small className="text-help">Required</small>
                 </td>
+                <div
+                    style={{
+                      display:
+                        user.gender.touched && !user.gender.valid
+                          ? "block"
+                          : "none",
+                      color: "red",
+                    }}
+                  >
+                    {user.gender.error}
+                  </div>
               </tr>
               <tr>
                 <td>
@@ -414,17 +507,7 @@ function DoctorRegistration() {
                     placeholder="Cardiologist"
                     required
                   />
-                  <div
-                    style={{
-                      display:
-                        user.gender.touched && !user.gender.valid
-                          ? "block"
-                          : "none",
-                      color: "red",
-                    }}
-                  >
-                    {user.gender.error}
-                  </div>
+                  <small className="text-help">Required</small>
                 </td>
               </tr>
               <tr>
@@ -457,7 +540,7 @@ function DoctorRegistration() {
                     className="form-control"
                     id="education"
                     name="education"
-                    placeholder="MBBS,MD,etc"
+                    placeholder="MBBS,MD"
                     required
                   />
                   <small className="text-help">Required</small>

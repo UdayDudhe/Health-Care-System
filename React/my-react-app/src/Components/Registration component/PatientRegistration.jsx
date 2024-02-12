@@ -1,15 +1,6 @@
 import React, { useReducer } from "react";
 import { useLocation } from "react-router-dom";
 
-//username
-//password
-// first_name
-// last_name
-// address
-// phone_number
-// gender
-// email_id
-
 function PatientRegistration() {
   const location = useLocation();
   console.log(location);
@@ -19,6 +10,7 @@ function PatientRegistration() {
     firstName: { value: "", valid: false, touched: false, error: "" },
     lastName: { value: "", valid: false, touched: false, error: "" },
     address: { value: "", valid: false, touched: false, error: "" },
+    pincode: { value: "", valid: false, touched: false, error: "" },
     contactNo: { value: "", valid: false, touched: false, error: "" },
     email: { value: "", valid: false, touched: false, error: "" },
     gender: {
@@ -87,13 +79,20 @@ function PatientRegistration() {
           error = "Please Enter Valid Address";
         }
         break;
+        case "pincode":
+        let patternpincode = /^[0-9]{1,6}$/;
+        if (!patternpincode.test(val)) {
+          valid = false;
+          error = "Please Enter Valid Pincode";
+        }
+        break;
       case "contactNo":
         let patterContact = /^\d{10}$/;
         if (!patterContact.test(val)) {
           valid = false;
           error = "Please Enter Valid Contact Number";
         }
-
+        break;
       default:
     }
     return { valid: valid, error: error };
@@ -288,6 +287,7 @@ function PatientRegistration() {
                     className="form-control"
                     id="address"
                     name="address"
+                    placeholder="123 Main St"
                     value={user.address.value}
                     onChange={(e) => {
                       handleChange("address", e.target.value);
@@ -295,10 +295,8 @@ function PatientRegistration() {
                     onBlur={(e) => {
                       handleChange("address", e.target.value);
                     }}
-                    placeholder="123 Main St"
                     required
                   />
-                  {/* <small className="text-help">Required</small> */}
                   <div
                     style={{
                       display:
@@ -309,6 +307,78 @@ function PatientRegistration() {
                     }}
                   >
                     {user.address.error}
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label className="control-label" htmlFor="city">
+                    City
+                  </label>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="city"
+                    name="city"
+                    placeholder="Pune"
+                    required
+                  />
+                  <small className="text-help">Required</small>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label className="control-label" htmlFor="state">
+                    State
+                  </label>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="state"
+                    name="state"
+                    placeholder="Maharashtra"
+                    required
+                  />
+                  <small className="text-help">Required</small>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label className="control-label" htmlFor="pincode">
+                    Pincode
+                  </label>
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    className="form-control"
+                    id="pincode"
+                    name="pincode"
+                    placeholder="412354"
+                    value={user.pincode.value}
+                    onChange={(e) => {
+                      handleChange("pincode", e.target.value);
+                    }}
+                    onBlur={(e) => {
+                      handleChange("pincode", e.target.value);
+                    }}
+                    required
+                    maxLength={6}
+                  />
+                  <div
+                    style={{
+                      display:
+                        user.pincode.touched && !user.pincode.valid
+                          ? "block"
+                          : "none",
+                      color: "red",
+                    }}
+                  >
+                    {user.pincode.error}
                   </div>
                 </td>
               </tr>
