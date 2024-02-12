@@ -62,7 +62,7 @@ function LoginPage() {
         }
       })
       .catch((error) => {
-        alert("Server Error");
+        navigate("/serverError");
       });
     //.then((obj)=>{console.log(obj)})
   };
