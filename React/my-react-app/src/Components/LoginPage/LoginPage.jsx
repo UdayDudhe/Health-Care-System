@@ -108,7 +108,7 @@ function LoginPage() {
               }}
             />
           </div>
-          <div className="error">{msg}</div>
+          
 
           <div className="button-container">
             <button
@@ -119,6 +119,8 @@ function LoginPage() {
               Submit
             </button>
           </div>
+
+          <div className="error">{msg}</div>
         </form>
       </div>
     </>
