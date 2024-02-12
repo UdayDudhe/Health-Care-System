@@ -7,7 +7,7 @@ import NavLinks from './Components/NavBar/NavLinks.jsx';
 import AdminHomePage from './Components/Entities/AdminPage/AdminHomePage.jsx';
 import DoctorHomePage from './Components/Entities/DoctorPage/DoctorHomePage.jsx';
 import PatientHomePage from './Components/Entities/PatientPage/PatientHomePage.jsx';
-
+import ErrorPage from './Components/ErrorPage/ErrorPage.jsx'
 function App() {
   return (
     <>
@@ -21,7 +21,9 @@ function App() {
           <Route path="/adminHome" element={<AdminHomePage />} />
           <Route path="/docHome" element={< DoctorHomePage/>} />
           <Route path="/patientHome" element={< PatientHomePage/>} />
+          <Route path="/serverError" element={<ErrorPage/>} />
 
+          
           
         </Routes>
       </BrowserRouter>
