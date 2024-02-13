@@ -1,11 +1,11 @@
 // DoctorRegistration.js
 import React, { useReducer } from "react";
 import "./DoctorRegistration.css";
-import { useLocation } from "react-router-dom";
+import { useLocation,useNavigate} from "react-router-dom";
 function DoctorRegistration() {
   const location = useLocation();
   console.log(location);
-
+  const navigate = useNavigate();
   const init = {
     userName: { value: "", valid: false, touched: false, error: "" },
     password: { value: "", valid: false, touched: false, error: "" },
@@ -129,6 +129,40 @@ function DoctorRegistration() {
       data: { key, value, touched: true, valid, error, formValid },
     });
   };
+  // const submitData = (e) =>{
+  //   e.preventDefault();
+  // }
+  const InsertData = (e) => {
+
+    e.preventDefault();
+    const reOption = {
+        method:"POST",
+        headers:{'content-type':'application/json'},
+        body:JSON.stringify({
+          firstName :user.firstName.value,
+          lastName :user.lastName.value,
+          address :user.address.value,
+          username :user.uname.value,
+          email:user.cemail.value,
+          password:user.passw.value,
+        })
+    }
+    
+    fetch('http://localhost:8080/registerDoctor', reOption)
+    .then((response) => {
+      if (response.ok) {
+        // Successful login
+        alert('Registration successful!');
+
+        // Redirect or perform other actions on successful login
+        navigate("/");
+      } else {
+        // Login failed
+        alert('Registration Fail!! Please Try Again');
+      }
+    })  
+
+}
   return (
     <>
       <legend>Doctor Registration</legend>
@@ -567,7 +601,7 @@ function DoctorRegistration() {
               </tr>
               <tr>
                 <td colSpan="1" className="button-center">
-                  <button type="submit" className="btn btn-primary">
+                  <button type="submit" className="btn btn-primary" disabled={user.formValid} onClick={(e)=>InsertData(e)}>
                     Register
                   </button>
                 </td>
@@ -592,3 +626,4 @@ function DoctorRegistration() {
   );
 }
 export default DoctorRegistration;
+

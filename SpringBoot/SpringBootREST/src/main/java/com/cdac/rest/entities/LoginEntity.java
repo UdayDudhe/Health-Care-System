@@ -20,18 +20,18 @@ public class LoginEntity {
 	@ManyToOne
 	@JoinColumn(name = "role_id")
 	RoleEntity role_id;
-	boolean id_approved;
+	boolean is_approved;
 	
 	public LoginEntity() {
 		super();
 	}
 	
-	public LoginEntity(String username, String password, RoleEntity role_id, boolean id_approved) {
+	public LoginEntity(String username, String password, RoleEntity role_id, boolean is_approved) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.role_id = role_id;
-		this.id_approved = id_approved;
+		this.is_approved = is_approved;
 	}
 
 	public int getLogin_id() {
@@ -59,10 +59,10 @@ public class LoginEntity {
 		this.role_id = role_id;
 	}
 	public boolean isId_approved() {
-		return id_approved;
+		return is_approved;
 	}
 	public void setId_approved(boolean id_approved) {
-		this.id_approved = id_approved;
+		this.is_approved = id_approved;
 	}
 	
 	
