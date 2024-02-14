@@ -49,7 +49,7 @@ function LoginPage() {
           setMsg("Account not found");
         } else {
           if (obj.id_approved === false) {
-            alert("req not approved");
+           setMsg("Request not approved");
           } else {
             if (obj.role_id.roleid === 1) {
               navigate("/adminHome");
@@ -62,7 +62,7 @@ function LoginPage() {
         }
       })
       .catch((error) => {
-        alert("Server Error");
+        navigate("/serverError");
       });
     //.then((obj)=>{console.log(obj)})
   };
@@ -108,7 +108,7 @@ function LoginPage() {
               }}
             />
           </div>
-          <div className="error">{msg}</div>
+          
 
           <div className="button-container">
             <button
@@ -119,6 +119,8 @@ function LoginPage() {
               Submit
             </button>
           </div>
+
+          <div className="error">{msg}</div>
         </form>
       </div>
     </>

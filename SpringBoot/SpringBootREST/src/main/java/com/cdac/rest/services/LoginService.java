@@ -30,4 +30,10 @@ public class LoginService {
 	{
 		return loginRepo.save(le);
 	}
+  
+	public LoginEntity loginsave(LoginEntity l)
+	{
+		return loginRepo.save(l);
+	}
+ 
 }
