@@ -25,6 +25,12 @@ public class LoginService {
 		}
 		return loginObject;
 	}
+	
+	public LoginEntity save(LoginEntity le)
+	{
+		return loginRepo.save(le);
+	}
+  
 	public LoginEntity loginsave(LoginEntity l)
 	{
 		return loginRepo.save(l);
