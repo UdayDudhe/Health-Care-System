@@ -5,7 +5,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -20,8 +19,8 @@ public class DoctorRegistrationEntity {
 	String address;
 	String city;
 	String state;
-	int pincode;
-	long phonenumber;
+	String pincode;
+	String phonenumber;
 	String email;
 	String gender;
 	String description;
@@ -40,7 +39,7 @@ public class DoctorRegistrationEntity {
 	
 
 	public DoctorRegistrationEntity( String first_name, String last_name, String address, String city,
-			String state, int pincode, long phonenumber, String email, String gender, String description, String image,
+			String state, String pincode, String phonenumber, String email, String gender, String description, String image,
 			String specialization, String education, LoginEntity doctor_login_id) {
 		super();
 		this.first_name = first_name;
@@ -84,11 +83,11 @@ public class DoctorRegistrationEntity {
 		return state;
 	}
 
-	public int getPincode() {
+	public String getPincode() {
 		return pincode;
 	}
 
-	public long getPhonenumber() {
+	public String getPhonenumber() {
 		return phonenumber;
 	}
 
@@ -141,11 +140,11 @@ public class DoctorRegistrationEntity {
 		this.state = state;
 	}
 
-	public void setPincode(int pincode) {
+	public void setPincode(String pincode) {
 		this.pincode = pincode;
 	}
 
-	public void setPhonenumber(long phonenumber) {
+	public void setPhonenumber(String phonenumber) {
 		this.phonenumber = phonenumber;
 	}
 

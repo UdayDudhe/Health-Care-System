@@ -11,7 +11,7 @@ public class DummyPatientRegistrationEntity
 	int patient_id;
 	String first_name;
 	String last_name;
-	String adress;
+	String address;
 	long phone_number;
 	String gender;
 	String email_id;
@@ -67,11 +67,11 @@ public class DummyPatientRegistrationEntity
 	public void setLast_name(String last_name) {
 		this.last_name = last_name;
 	}
-	public String getAdress() {
-		return adress;
+	public String getaddress() {
+		return address;
 	}
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setaddress(String address) {
+		this.address = address;
 	}
 	public long getPhone_number() {
 		return phone_number;

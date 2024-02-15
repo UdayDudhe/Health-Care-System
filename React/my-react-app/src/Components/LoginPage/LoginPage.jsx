@@ -78,7 +78,7 @@ function LoginPage() {
             <input
               type="text"
               name="username"
-              id=""
+              id="username"
               className="form-control"
               value={info.username}
               onChange={(e) => {
@@ -96,7 +96,7 @@ function LoginPage() {
             <input
               type="password"
               name="password"
-              id=""
+              id="password"
               className="form-control"
               value={info.password}
               onChange={(e) => {

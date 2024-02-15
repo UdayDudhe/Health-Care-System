@@ -7,14 +7,12 @@ public class DummyDoctorRegistrationEntity {
 	String password;
 	int role_id;
 	boolean is_approved;
+	
 	int doctorid;
 	String first_name;
 	String last_name;
 	String address;
-	String city;
-	String state;
-	int pincode;
-	long phonenumber;
+	String phonenumber;
 	String email;
 	String gender;
 	String description;
@@ -22,7 +20,9 @@ public class DummyDoctorRegistrationEntity {
 	String specialization;
 	String education;
 	int doctor_login_id;
-	
+	String city;
+	String pincode;
+	String state;
 	public int getLogin_id() {
 		return login_id;
 	}
@@ -35,7 +35,7 @@ public class DummyDoctorRegistrationEntity {
 	public int getRole_id() {
 		return role_id;
 	}
-	public boolean getIs_approved() {
+	public boolean isIs_approved() {
 		return is_approved;
 	}
 	public int getDoctorid() {
@@ -50,16 +50,7 @@ public class DummyDoctorRegistrationEntity {
 	public String getAddress() {
 		return address;
 	}
-	public String getCity() {
-		return city;
-	}
-	public String getState() {
-		return state;
-	}
-	public int getPincode() {
-		return pincode;
-	}
-	public long getPhonenumber() {
+	public String getPhonenumber() {
 		return phonenumber;
 	}
 	public String getEmail() {
@@ -82,6 +73,15 @@ public class DummyDoctorRegistrationEntity {
 	}
 	public int getDoctor_login_id() {
 		return doctor_login_id;
+	}
+	public String getCity() {
+		return city;
+	}
+	public String getPincode() {
+		return pincode;
+	}
+	public String getState() {
+		return state;
 	}
 	public void setLogin_id(int login_id) {
 		this.login_id = login_id;
@@ -110,16 +110,7 @@ public class DummyDoctorRegistrationEntity {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public void setState(String state) {
-		this.state = state;
-	}
-	public void setPincode(int pincode) {
-		this.pincode = pincode;
-	}
-	public void setPhonenumber(long phonenumber) {
+	public void setPhonenumber(String phonenumber) {
 		this.phonenumber = phonenumber;
 	}
 	public void setEmail(String email) {
@@ -143,5 +134,15 @@ public class DummyDoctorRegistrationEntity {
 	public void setDoctor_login_id(int doctor_login_id) {
 		this.doctor_login_id = doctor_login_id;
 	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public void setPincode(String pincode) {
+		this.pincode = pincode;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	
 	
 }
