@@ -18,7 +18,7 @@ public class PatientRegistrationEntity
 	
 	String first_name;
 	String last_name;
-	String adress;
+	String address;
 	long phone_number;
 	String gender;
 	String email_id;
@@ -54,12 +54,12 @@ public class PatientRegistrationEntity
 		this.last_name = last_name;
 	}
 
-	public String getAdress() {
-		return adress;
+	public String getaddress() {
+		return address;
 	}
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setaddress(String address) {
+		this.address = address;
 	}
 
 	public long getPhone_number() {
@@ -95,12 +95,12 @@ public class PatientRegistrationEntity
 		
 	}
 
-	public PatientRegistrationEntity(String first_name, String last_name, String adress, long phone_number,
+	public PatientRegistrationEntity(String first_name, String last_name, String address, long phone_number,
 			String gender, String email_id, String city, String state, long pincode, LoginEntity patient_login_id) {
 		super();
 		this.first_name = first_name;
 		this.last_name = last_name;
-		this.adress = adress;
+		this.address = address;
 		this.phone_number = phone_number;
 		this.gender = gender;
 		this.email_id = email_id;

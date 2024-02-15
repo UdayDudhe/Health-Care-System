@@ -31,8 +31,8 @@ public class PatientRegistrationController
 	{
 		RoleEntity r= roleService.getRole(3);
 		LoginEntity l=new LoginEntity(pre.getUsername(),pre.getPassword(),r,true);
-		LoginEntity le= loginservice.loginsave(l);
-		PatientRegistrationEntity p=new PatientRegistrationEntity(pre.getFirst_name(),pre.getLast_name(),pre.getAdress(),pre.getPhone_number(),pre.getGender(),pre.getEmail_id(),pre.getCity(),pre.getState(),pre.getPincode(),l);
+		LoginEntity le= loginservice.save(l);
+		PatientRegistrationEntity p=new PatientRegistrationEntity(pre.getFirst_name(),pre.getLast_name(),pre.getaddress(),pre.getPhone_number(),pre.getGender(),pre.getEmail_id(),pre.getCity(),pre.getState(),pre.getPincode(),l);
 		pre.setPatient_login_id(l.getLogin_id());
 		return prserv.savePatient(p);
 		
