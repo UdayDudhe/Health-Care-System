@@ -45,6 +45,9 @@ public class DoctorRegistrationController {
 	}
 	
 
+	
+
+
 	@GetMapping("/getAllDoctor")
 	public List<DoctorRegistrationEntity> getAllDoctor()
 	{
@@ -58,7 +61,7 @@ public class DoctorRegistrationController {
 		return ResponseEntity.noContent().build();
 	}
 
-	@GetMapping("/getprofile/{doctorLoginId}")
+    @GetMapping("/getdoctorprofile/{doctorLoginId}")
     public ResponseEntity<DoctorRegistrationEntity> getDoctorByLoginId(@PathVariable int doctorLoginId) {
         DoctorRegistrationEntity doctor = doctorService.getDoctorByLoginId(doctorLoginId);
         if (doctor != null) {
