@@ -23,8 +23,13 @@ public class DoctorRegistrationService {
 		return doctorRepo.save(dre);
 	}
 	
+
 	public void deleteDoctorById(int doctor_id)
 	{
 		doctorRepo.deleteById(doctor_id);
 	}
+	  public DoctorRegistrationEntity getDoctorByLoginId(int doctorLoginId) {
+	        return doctorRepo.findByDoctor_login_id(doctorLoginId);
+	    }
+
 }

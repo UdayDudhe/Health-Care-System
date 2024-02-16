@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +21,7 @@ import com.cdac.rest.entities.RoleEntity;
 import com.cdac.rest.services.DoctorRegistrationService;
 import com.cdac.rest.services.LoginService;
 import com.cdac.rest.services.RoleService;
+
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class DoctorRegistrationController {
@@ -41,6 +44,7 @@ public class DoctorRegistrationController {
 		return doctorService.registerDoctor(d);
 	}
 	
+
 	@GetMapping("/getAllDoctor")
 	public List<DoctorRegistrationEntity> getAllDoctor()
 	{
@@ -53,4 +57,15 @@ public class DoctorRegistrationController {
 		doctorService.deleteDoctorById(doctor_id);
 		return ResponseEntity.noContent().build();
 	}
+
+	@GetMapping("/getprofile/{doctorLoginId}")
+    public ResponseEntity<DoctorRegistrationEntity> getDoctorByLoginId(@PathVariable int doctorLoginId) {
+        DoctorRegistrationEntity doctor = doctorService.getDoctorByLoginId(doctorLoginId);
+        if (doctor != null) {
+            return ResponseEntity.ok(doctor);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+}
+
 }

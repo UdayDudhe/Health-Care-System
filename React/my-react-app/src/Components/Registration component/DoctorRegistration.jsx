@@ -61,16 +61,18 @@ function DoctorRegistration() {
     };
     fetch("http://localhost:8080/registerDoctor", reqOptions)
       .then((resp) => {
-        console.log(resp);
-        return resp.json();
+        if (resp.ok) {
+          return resp.json(); 
+        } else {
+          throw new Error("Cannot Register");
+        }
       })
       .then((obj) => {
         console.log(obj);
-        if (obj.ok) {
-          navigate("/");
-        }
+        alert("Successfully Registered");
+        navigate("/");
       })
-      .catch((error) => navigate("/serverError"));
+      .catch((error) => alert("Server Error: Cannot Register"));
   };
 
   const validateData = (key, val) => {
