@@ -1,5 +1,6 @@
 package com.cdac.rest.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,18 +15,31 @@ public class DoctorRegistrationEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int doctorid;
+	@Column
 	String first_name;
+	@Column
 	String last_name;
+	@Column
 	String address;
+	@Column
 	String city;
+	@Column
 	String state;
+	@Column
 	String pincode;
+	@Column
 	String phonenumber;
+	@Column
 	String email;
+	@Column
 	String gender;
+	@Column
 	String description;
+	@Column
 	String image;
+	@Column
 	String specialization;
+	@Column
 	String education;
 	
 	@OneToOne
@@ -182,7 +196,7 @@ public class DoctorRegistrationEntity {
 		this.doctor_login_id = doctor_login_id;
 	}
 
-
+	
 	@Override
 	public String toString() {
 		return "DoctorRegistrationEntity [doctorid=" + doctorid + ", first_name=" + first_name + ", last_name="
