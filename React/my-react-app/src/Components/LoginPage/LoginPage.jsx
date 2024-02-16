@@ -54,7 +54,7 @@ function LoginPage() {
            setMsg("Request not approved");
           } else {
             if (obj.role_id.roleid === 1) {
-              navigate("/adminHome");
+              navigate("/adminDoctor");
             } else if (obj.role_id.roleid === 2) {
               navigate("/docHome");
             } else if (obj.role_id.roleid === 3) {

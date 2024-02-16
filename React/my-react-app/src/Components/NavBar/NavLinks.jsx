@@ -18,7 +18,8 @@ function NavLinks() {
       <nav className="navbar navbar-expand-lg sticky-top  navbar-dark bg-dark">
         <div>
           <Link className="navbar-brand" to="/">
-           HealthCare System
+            <i class="bi bi-heart-pulse"></i>
+            HealthCare System
           </Link>
         </div>
 
@@ -49,15 +50,13 @@ function NavLinks() {
               </Link>
             </>
           )}
-
           {location.pathname === "/docHome" && (
             <>
-              <a href="/docProfile" className="navbar-text" >
+              <a href="/docProfile" className="navbar-text">
                 Profile
               </a>
             </>
           )}
-
           {location.pathname === "/docProfile" && (
             <>
               <Link className="navbar-text" to="/docHome">
@@ -69,7 +68,33 @@ function NavLinks() {
               </button>
             </>
           )}
-
+          {location.pathname === "/adminHome" && (
+            <>
+              <Link className="navbar-text" to="/adminDoctor">
+                All Doctors
+              </Link>
+            </>
+          )}
+          {location.pathname === "/adminDoctor" && (
+            <>
+              <Link className="navbar-text" to="/adminPatient">
+                All Patients
+              </Link>
+              <button className="btn btn-danger" onClick={handleLogout}>
+                Logout
+              </button>
+            </>
+          )}{" "}
+          {location.pathname === "/adminPatient" && (
+            <>
+              <Link className="navbar-text" to="/adminDoctor">
+                All Doctors
+              </Link>
+              <button className="btn btn-danger" onClick={handleLogout}>
+                Logout
+              </button>
+            </>
+          )}
           {location.pathname.endsWith("Home") && (
             <>
               <button className="btn btn-danger" onClick={handleLogout}>
