@@ -1,4 +1,5 @@
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import DoctorRegistration from './Components/Registration component/DoctorRegistration.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LoginPage from './Components/LoginPage/LoginPage';
@@ -8,6 +9,8 @@ import AdminHomePage from './Components/Entities/AdminPage/AdminHomePage.jsx';
 import DoctorHomePage from './Components/Entities/DoctorPage/DoctorHomePage.jsx';
 import PatientHomePage from './Components/Entities/PatientPage/PatientHomePage.jsx';
 import ErrorPage from './Components/ErrorPage/ErrorPage.jsx'
+import AdminDoctorPage from './Components/Entities/AdminPage/AdminDoctorPage.jsx';
+import AdminAllPatient from './Components/Entities/AdminPage/AdminAllPatient.jsx';
 // import DoctorProfilePage from './Components/Entities/DoctorPage/DoctorProfilePage.jsx';
 function App() {
   return (
@@ -24,6 +27,8 @@ function App() {
           <Route path="/patientHome" element={< PatientHomePage/>} />
           <Route path="/serverError" element={<ErrorPage/>} />
           {/* <Route path="/docProfile" element={<DoctorProfilePage/>} /> */}
+          <Route path="/adminDoctor" element={<AdminDoctorPage/>} />
+          <Route path="/adminPatient" element={<AdminAllPatient/>} />
 
           
           

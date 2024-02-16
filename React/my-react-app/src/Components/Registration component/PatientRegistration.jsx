@@ -41,7 +41,7 @@ function PatientRegistration() {
         first_name: user.firstName.value,
         last_name: user.lastName.value,
         address: user.address.value,
-        phonenumber: user.contactNo.value,
+        phone_number: user.contactNo.value,
         email_id: user.email.value,
         gender: user.gender.value,
         city: user.city.value,
