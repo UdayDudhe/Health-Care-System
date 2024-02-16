@@ -205,6 +205,4 @@ public class DoctorRegistrationEntity {
 				+ description + ", image=" + image + ", specialization=" + specialization + ", education=" + education
 				+ ", doctor_login_id=" + doctor_login_id + "]";
 	}
-	
-	
 }
