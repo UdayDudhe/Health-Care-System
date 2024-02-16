@@ -17,4 +17,8 @@ public class DoctorRegistrationService {
 	{
 		return doctorRepo.save(dre);
 	}
+	
+	  public DoctorRegistrationEntity getDoctorByLoginId(int doctorLoginId) {
+	        return doctorRepo.findByDoctor_login_id(doctorLoginId);
+	    }
 }
