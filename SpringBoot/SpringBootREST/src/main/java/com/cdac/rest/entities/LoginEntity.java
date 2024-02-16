@@ -1,5 +1,6 @@
 package com.cdac.rest.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,11 +16,14 @@ public class LoginEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int login_id;
+	@Column
 	String username;
+	@Column
 	String password;
 	@ManyToOne
 	@JoinColumn(name = "role_id")
 	RoleEntity role_id;
+	@Column
 	boolean is_approved;
 	
 	public LoginEntity() {

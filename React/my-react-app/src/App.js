@@ -8,7 +8,7 @@ import AdminHomePage from './Components/Entities/AdminPage/AdminHomePage.jsx';
 import DoctorHomePage from './Components/Entities/DoctorPage/DoctorHomePage.jsx';
 import PatientHomePage from './Components/Entities/PatientPage/PatientHomePage.jsx';
 import ErrorPage from './Components/ErrorPage/ErrorPage.jsx'
-import DoctorProfilePage from './Components/Entities/DoctorPage/DoctorProfilePage.jsx';
+// import DoctorProfilePage from './Components/Entities/DoctorPage/DoctorProfilePage.jsx';
 function App() {
   return (
     <>
@@ -23,7 +23,7 @@ function App() {
           <Route path="/docHome" element={< DoctorHomePage/>} />
           <Route path="/patientHome" element={< PatientHomePage/>} />
           <Route path="/serverError" element={<ErrorPage/>} />
-          <Route path="/docProfile" element={<DoctorProfilePage/>} />
+          {/* <Route path="/docProfile" element={<DoctorProfilePage/>} /> */}
 
           
           

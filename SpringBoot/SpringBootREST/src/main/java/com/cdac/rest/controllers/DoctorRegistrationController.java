@@ -1,8 +1,13 @@
 package com.cdac.rest.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,7 +44,24 @@ public class DoctorRegistrationController {
 		return doctorService.registerDoctor(d);
 	}
 	
-	@GetMapping("/getdoctorprofile/{doctorLoginId}")
+
+	
+
+
+	@GetMapping("/getAllDoctor")
+	public List<DoctorRegistrationEntity> getAllDoctor()
+	{
+		return doctorService.getAllDoctor();
+	}
+	
+	@DeleteMapping("/deleteDoctor/{doctor_id}")
+	public ResponseEntity<Void> deleteDoctor(@PathVariable("doctor_id") int doctor_id)
+	{
+		doctorService.deleteDoctorById(doctor_id);
+		return ResponseEntity.noContent().build();
+	}
+
+    @GetMapping("/getdoctorprofile/{doctorLoginId}")
     public ResponseEntity<DoctorRegistrationEntity> getDoctorByLoginId(@PathVariable int doctorLoginId) {
         DoctorRegistrationEntity doctor = doctorService.getDoctorByLoginId(doctorLoginId);
         if (doctor != null) {
@@ -48,4 +70,5 @@ public class DoctorRegistrationController {
             return ResponseEntity.notFound().build();
         }
 }
+
 }
