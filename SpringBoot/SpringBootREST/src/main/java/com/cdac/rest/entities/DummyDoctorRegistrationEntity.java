@@ -7,7 +7,6 @@ public class DummyDoctorRegistrationEntity {
 	String password;
 	int role_id;
 	boolean is_approved;
-	
 	int doctorid;
 	String first_name;
 	String last_name;
