@@ -4,45 +4,30 @@ import "./AdminDoctorEntity.css";
 export default function AdminDoctoEntity(prop) {
   const handleButtonClick = (e) => {
     e.preventDefault();
-    const status = prop.doctor_login_id.id_approved ? "approve" : "disapprove";
+    const linkString = prop.doctor_login_id.id_approved
+      ? "http://localhost:8080/disapprove/"
+      : `http://localhost:8080/approve/`;
     const reqOptions = {
-      method: "POST",
+      method: "GET",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        is_approved: status,
-        doctor_login_id: prop.doctor_login_id.login_id,
-      }),
     };
     console.log(reqOptions);
-    fetch("http://localhost:8080/approveDoctor", reqOptions)
-      .then((resp) => {
-        if (resp.ok) {
-          return resp.json();
-        } else {
-          throw new Error("Cannot change status");
-        }
-      })
-      .then((obj) => {
-        console.log(obj);
-        alert("Status Changed");
-      })
-      .catch((error) => alert("Server Error"));
+  //  alert(linkString + prop.doctor_login_id.login_id);
+    fetch(linkString + prop.doctor_login_id.login_id, reqOptions).then(
+      (resp) => {
+        window.location.reload();
+      }
+    );
   };
 
   const fetchDelete = () => {
-    fetch("http://localhost:8080/", {})
-      .then((resp) => {
-        if (resp.ok) {
-          return resp.json();
-        } else {
-          throw new Error("Cannot delete");
-        }
-      })
-      .then((obj) => {
-        console.log(obj);
-        alert("Deleted Doctor");
-      })
-      .catch((error) => alert("Server Error"));
+    fetch(`http://localhost:8080/deleteDoctor/${prop.doctorid}`, {
+      method: "DELETE",
+      headers: { "content-type": "application/json" },
+    }).then((resp) => {
+      alert("Deleted");
+      window.location.reload();
+    });
   };
 
   const handleDelete = (e) => {
@@ -51,6 +36,7 @@ export default function AdminDoctoEntity(prop) {
     const result = confirm("Do you want to proceed?");
     /* eslint-enable no-restricted-globals */
     if (result) {
+      fetchDelete();
     }
   };
 

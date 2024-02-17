@@ -30,4 +30,28 @@ public class LoginService {
 	{
 		return loginRepo.save(le);
 	}
+	
+	public void getLoginById(int loginID) {
+		
+		 loginRepo.findById(loginID);
+		
+	}
+
+	public void approveLogin(int loginID) {
+			
+		LoginEntity loginObject;
+		loginObject = loginRepo.findById(loginID).get();
+		loginObject.setId_approved(true);
+		loginRepo.save(loginObject);
+	}
+	
+	public void disapproveLogin(int loginID) {
+		
+		LoginEntity loginObject;
+		loginObject = loginRepo.findById(loginID).get();
+		loginObject.setId_approved(false);
+		loginRepo.save(loginObject);
+		
+	}
+	
 }

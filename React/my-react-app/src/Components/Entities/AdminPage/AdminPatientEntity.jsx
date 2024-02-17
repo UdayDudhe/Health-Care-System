@@ -31,19 +31,13 @@ function AdminPatientEntity(prop) {
   };
 
   const fetchDelete = () => {
-    fetch("http://localhost:8080/", {})
-      .then((resp) => {
-        if (resp.ok) {
-          return resp.json();
-        } else {
-          throw new Error("Cannot delete");
-        }
-      })
-      .then((obj) => {
-        console.log(obj);
-        alert("Deleted Doctor");
-      })
-      .catch((error) => alert("Server Error"));
+    fetch(`http://localhost:8080/deleteDoctor/${prop.doctorid}`, {
+      method: "DELETE",
+      headers: { "content-type": "application/json" },
+    }).then((resp) => {
+      alert("Deleted");
+      window.location.reload();
+    });
   };
 
   const handleDelete = (e) => {
@@ -52,6 +46,7 @@ function AdminPatientEntity(prop) {
     const result = confirm("Do you want to proceed?");
     /* eslint-enable no-restricted-globals */
     if (result) {
+      fetchDelete();
     }
   };
   return (
