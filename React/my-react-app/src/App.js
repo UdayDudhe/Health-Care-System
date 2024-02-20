@@ -11,6 +11,7 @@ import PatientHomePage from './Components/Entities/PatientPage/PatientHomePage.j
 import ErrorPage from './Components/ErrorPage/ErrorPage.jsx'
 import AdminDoctorPage from './Components/Entities/AdminPage/AdminDoctorPage.jsx';
 import AdminAllPatient from './Components/Entities/AdminPage/AdminAllPatient.jsx';
+import SetAppointment from './Components/Entities/DoctorPage/SetAppointment.jsx';
 // import DoctorProfilePage from './Components/Entities/DoctorPage/DoctorProfilePage.jsx';
 function App() {
   return (
@@ -23,15 +24,15 @@ function App() {
           <Route path="/doc-reg" element={<DoctorRegistration />} />
           <Route path="/pat-reg" element={<PatientRegistration />} />
           <Route path="/adminHome" element={<AdminHomePage />} />
-          <Route path="/docHome" element={< DoctorHomePage/>} />
-          <Route path="/patientHome" element={< PatientHomePage/>} />
-          <Route path="/serverError" element={<ErrorPage/>} />
+          <Route path="/docHome" element={< DoctorHomePage />} />
+          <Route path="/patientHome" element={< PatientHomePage />} />
+          <Route path="/serverError" element={<ErrorPage />} />
           {/* <Route path="/docProfile" element={<DoctorProfilePage/>} /> */}
-          <Route path="/adminDoctor" element={<AdminDoctorPage/>} />
-          <Route path="/adminPatient" element={<AdminAllPatient/>} />
+          <Route path="/adminDoctor" element={<AdminDoctorPage />} />
+          <Route path="/adminPatient" element={<AdminAllPatient />} />
+          <Route path="/setAppointment" element={< SetAppointment />} />
 
-          
-          
+
         </Routes>
       </BrowserRouter>
     </>
