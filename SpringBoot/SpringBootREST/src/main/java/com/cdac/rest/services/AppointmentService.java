@@ -23,7 +23,15 @@ public class AppointmentService {
         return appointmentRepository.save(appointment);
     }
     
+    public Appointment saveUpdateAppointment(Appointment appointment) { 	
+        return appointmentRepository.save(appointment);
+    }
+    
     public List<Appointment> getAppointmentsByDoctorIdAndDate(Integer doctorId, String appointmentDate) {
         return appointmentRepository.findByDoctorIdAndAppointmentDate(doctorId, appointmentDate);
+    }
+    
+    public Appointment getAppointmentById(Integer appointmentId) {
+        return appointmentRepository.findById(appointmentId).orElse(null);
     }
 }
