@@ -9,9 +9,9 @@ function DoctorHomePage() {
     setDate(event.target.value);
   };
 
-  const handleButtonClick = (e) => {
+  const fetchData = () => {
     fetch(
-      `http://localhost:8080/appointments/getAppointments/${loginID}/${date}`,
+      `http://localhost:8080/appointments/getAscAppointments/${loginID}/${date}`,
       {
         method: "GET",
         headers: {
@@ -35,23 +35,99 @@ function DoctorHomePage() {
       });
   };
 
+  const handleButtonClick = (e) => {
+    console.log(
+      `http://localhost:8080/appointments/getAscAppointments/${loginID}/${date}`
+    );
+
+    fetchData();
+  };
+
+  const handleStatusChange = (appointmentId, newStatus) => {
+    console.log(
+      `http://localhost:8080/appointments/updatetstatus/${appointmentId}` +
+        JSON.stringify({ status: newStatus })
+    );
+    fetch(`http://localhost:8080/appointments/updatetstatus/${appointmentId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: newStatus,
+    })
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error("Failed to update appointment status");
+        }
+      })
+      .catch((error) => {
+        alert("Error updating appointment status:", error);
+      });
+
+    fetchData();
+  };
+
   return (
-    <div className="DoctorHomePage">
+    <div className="DoctorHomePage container">
       <legend>View Appointments</legend>
-      <div>
-        <label>
-          Date
-          <br />
+      <div className="w-60">
+        <div className="mb-3">
+          <label htmlFor="date" className="form-label">
+            Date
+          </label>
           <input
             type="date"
+            className="form-control"
+            id="date"
             value={date}
             onChange={handleDateChange}
             required
           />
-        </label>
-        <button className="btn btn-primary" onClick={handleButtonClick}>
+        </div>
+        <button className="btn btn-primary mb-3" onClick={handleButtonClick}>
           Check Appointments
         </button>
+        <div className="table-responsive">
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>Appointment ID</th>
+                <th>Patient ID</th>
+                <th>Phone Number</th>
+                <th>Appointment Date</th>
+                <th>Appointment Time</th>
+                <th colSpan="2">Notes</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((appointment, index) => (
+                <tr key={appointment.id}>
+                  <td>{appointment.id}</td>
+                  <td>
+                    {appointment.patientId.first_name}{" "}
+                    {appointment.patientId.last_name}
+                  </td>
+                  <td>{appointment.patientId.phone_number}</td>
+                  <td>{appointment.appointmentDate}</td>
+                  <td>{appointment.appointmentTime}</td>
+                  <td colSpan="2">{appointment.notes}</td>
+                  <td>
+                    <select
+                      value={appointment.status}
+                      onChange={(event) =>
+                        handleStatusChange(appointment.id, event.target.value)
+                      }
+                    >
+                      <option value="Not Visited">Not Visited</option>
+                      <option value="Visited">Visited</option>
+                    </select>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

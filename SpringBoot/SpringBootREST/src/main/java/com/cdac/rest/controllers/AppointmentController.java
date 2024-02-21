@@ -53,4 +53,17 @@ public class AppointmentController {
         return new ResponseEntity<>(appointments, HttpStatus.OK);
     }
     
+    @PutMapping("/updatetstatus/{appointmentId}")
+    public ResponseEntity<String> updateAppointmentStatus(
+            @PathVariable("appointmentId") Integer appointmentId,
+            @RequestBody String status) {
+        Appointment appointment = appointmentService.getAppointmentById(appointmentId);
+        if (appointment == null) {
+            return new ResponseEntity<>("Appointment not found", HttpStatus.NOT_FOUND);
+        }
+        appointment.setStatus(status);
+        appointmentService.saveUpdateAppointment(appointment);
+        return new ResponseEntity<>("Appointment status updated successfully", HttpStatus.OK);
+    }
+    
 }
