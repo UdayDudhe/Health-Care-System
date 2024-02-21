@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import data from "./appointment-timedata.js";
+//import data from "./appointment-timedata.js";
 
 function PatientBookAppointment() {
   const doctorId = localStorage.getItem("doctorBookingId");
@@ -7,20 +7,21 @@ function PatientBookAppointment() {
   const doctorLname = localStorage.getItem("doctorBookinglname");
   const patientId = localStorage.getItem("loginId");
 
+  const [data, setData] = useState([]);
   const [date, setDate] = useState("");
   const [selectedSlot, setSelectedSlot] = useState("");
-  const [reason, setReason] = useState(""); // State for the reason input
-  const [isSlotSelected, setIsSlotSelected] = useState(false); // State to track if a slot is selected
+  const [reason, setReason] = useState("");
+  const [isSlotSelected, setIsSlotSelected] = useState(false);
 
   const handleDateChange = (event) => {
     setDate(event.target.value);
-    setSelectedSlot(""); // Reset selected slot when date changes
-    setIsSlotSelected(false); // Reset slot selection validation
+    setSelectedSlot("");
+    setIsSlotSelected(false);
   };
 
   const handleSlotChange = (event) => {
     setSelectedSlot(event.target.value);
-    setIsSlotSelected(true); // Slot is selected, so set validation to true
+    setIsSlotSelected(true);
   };
 
   const handleReasonChange = (event) => {
@@ -32,7 +33,7 @@ function PatientBookAppointment() {
 
     if (!isSlotSelected) {
       alert("Please select a slot");
-      return; // Don't proceed further
+      return;
     } else {
       console.log(
         JSON.stringify({
@@ -40,7 +41,7 @@ function PatientBookAppointment() {
           date: date,
           selectedSlot: selectedSlot,
           patientId: patientId,
-          reason: reason, // Include reason in the submitted data
+          reason: reason,
         })
       );
 
@@ -53,63 +54,93 @@ function PatientBookAppointment() {
           doctorId: doctorId,
           date: date,
           selectedSlot: selectedSlot,
-          reason: reason, // Include reason in the submitted data
+          reason: reason,
         }),
       })
         .then((response) => response.json())
         .then((data) => {
-          // Handle response if needed
           alert("Appointment booked successfully:", data);
         })
         .catch((error) => {
           alert("Error booking appointment:", error);
         });
-
     }
   };
 
   const filteredAppointments = data.filter(
-    (appointment) => appointment.day === date && appointment.flag === 1
+    (appointment) => appointment.flag === 1
   );
 
+  const fetchAvailableSlots = () => {
+    console.log(`http://localhost:8080/getAllDoctor/${date}/${doctorId}`);
+
+    fetch(`http://localhost:8080/getAllDoctor/${date}/${doctorId}`)
+      .then((resp) => {
+        if (resp.ok) {
+          return resp.json();
+        } else {
+          throw new Error("Failed to fetch doctors");
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        setData(data);
+      })
+      .catch((error) => {
+        alert("Error fetching doctors:", error);
+      });
+  };
+
   return (
-    <form onSubmit={handleFormSubmit}>
-      <legend>
-        Book slots for Dr. {doctorFname} {doctorLname}
-      </legend>
-      <label>
-        Date
-        <br />
-        <input type="date" value={date} onChange={handleDateChange} required />
-      </label>
-
-      <div>
-        {filteredAppointments.map((appointment) => (
-          <div key={appointment.appoint_id}>
-            <input
-              type="radio"
-              id={appointment.slot_start}
-              name="appointmentSlot"
-              value={appointment.slot_start}
-              checked={selectedSlot === appointment.slot_start}
-              onChange={handleSlotChange}
-            />
-            <label htmlFor={appointment.slot_start}>
-              {appointment.slot_start}
-            </label>
+    <div className="PatientBookAppointment">
+      <form onSubmit={handleFormSubmit}>
+        <legend>
+          Book slots for Dr. {doctorFname} {doctorLname}
+        </legend>
+        <label>
+          Date
+          <br />
+          <input
+            type="date"
+            value={date}
+            onChange={handleDateChange}
+            required
+          />
+        </label>
+        <button type="button" onClick={fetchAvailableSlots}>
+          Check Avaialbe Slots
+        </button>
+        <div>
+          <div className="container">
+            <div className="row">
+              {filteredAppointments.map((appointment) => (
+                <div key={appointment.id} className="col-sm-3 ">
+                  <input
+                    type="radio"
+                    id={appointment.slotStart}
+                    className="form-check-input"
+                    name="appointmentSlot"
+                    value={appointment.slotStart}
+                    checked={selectedSlot === appointment.slotStart}
+                    onChange={handleSlotChange}
+                  />
+                  <label htmlFor={appointment.slotStart}>
+                    {appointment.slotStart}
+                  </label>
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
-      </div>
+        </div>
 
-      {/* Add a text input for reason */}
-      <label>
-        Reason
-        <br />
-        <input type="text" value={reason} onChange={handleReasonChange} />
-      </label>
-
-      <button type="submit">Book Appointment</button>
-    </form>
+        <label>
+          Reason
+          <br />
+          <input type="text" value={reason} onChange={handleReasonChange} />
+        </label>
+        <button type="submit">Book Appointment</button>
+      </form>
+    </div>
   );
 }
 

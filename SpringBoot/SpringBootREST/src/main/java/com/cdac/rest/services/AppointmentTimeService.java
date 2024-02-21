@@ -1,5 +1,7 @@
 package com.cdac.rest.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,5 +15,9 @@ public class AppointmentTimeService {
 
     public AppointmentTime saveAppointmentTime(AppointmentTime appointmentTime) {
         return appointmentTimeRepository.save(appointmentTime);
+    }
+    
+    public List<AppointmentTime> getAppointmentTimesByDoctorAndDate(Integer doctorId, String date) {
+        return appointmentTimeRepository.findByDoctorIdAndDay(doctorId, date);
     }
 }
