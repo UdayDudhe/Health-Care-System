@@ -60,20 +60,25 @@ function SetAppointment() {
     event.preventDefault();
     const loginId = localStorage.getItem("loginId");
     console.log(JSON.stringify({ selectedSlots, loginId, date }));
-    fetch("http://localhost:8080/verifyLogin", {
+    fetch("http://localhost:8080/setappointmentSlots", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ selectedSlots, loginId, date }),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Appointment set successfully:", data);
+      .then((resp) => {
+        if (resp.ok) {
+          return resp
+        } else {
+          throw new Error("Cannot change status");
+        }
       })
-      .catch((error) => {
-        console.error("Error setting appointment:", error);
-      });
+      .then((obj) => {
+        console.log(obj);
+        alert("Added Appointment");
+      })
+      .catch((error) => alert("Server Error"));
   };
 
   return (
@@ -81,7 +86,7 @@ function SetAppointment() {
       <div className="set-appointment-container">
         <legend>Set Appointment for {localStorage.getItem("username")}</legend>
 
-        <form onSubmit={handleSubmit}>
+        <form>
           <div className="timeContainer">
             <div className="items">
               <label>
@@ -126,7 +131,11 @@ function SetAppointment() {
                 <option value={90}>90 mins</option>
               </select>
             </label>
-            <button class="btn btn-outline-primary" onClick={calculateSlots}>
+            <button
+              class="btn btn-outline-primary"
+              type="button"
+              onClick={calculateSlots}
+            >
               Get Slots
             </button>
           </div>
@@ -149,7 +158,7 @@ function SetAppointment() {
               </div>
             </div>
           </div>
-          <button class="btn btn-primary" type="submit">
+          <button class="btn btn-primary" type="submit" onClick={handleSubmit}>
             Submit
           </button>
         </form>
