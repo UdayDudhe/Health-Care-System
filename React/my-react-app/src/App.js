@@ -12,7 +12,8 @@ import ErrorPage from './Components/ErrorPage/ErrorPage.jsx'
 import AdminDoctorPage from './Components/Entities/AdminPage/AdminDoctorPage.jsx';
 import AdminAllPatient from './Components/Entities/AdminPage/AdminAllPatient.jsx';
 import SetAppointment from './Components/Entities/DoctorPage/SetAppointment.jsx';
-// import DoctorProfilePage from './Components/Entities/DoctorPage/DoctorProfilePage.jsx';
+import PatientBookAppointment from './Components/Entities/PatientPage/PatientBookAppointment.jsx';
+
 function App() {
   return (
     <>
@@ -31,7 +32,7 @@ function App() {
           <Route path="/adminDoctor" element={<AdminDoctorPage />} />
           <Route path="/adminPatient" element={<AdminAllPatient />} />
           <Route path="/setAppointment" element={< SetAppointment />} />
-
+          <Route path="/getAppointment" element={<PatientBookAppointment />} />
 
         </Routes>
       </BrowserRouter>

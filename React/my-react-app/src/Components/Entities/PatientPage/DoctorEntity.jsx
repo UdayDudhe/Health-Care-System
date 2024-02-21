@@ -1,45 +1,16 @@
-import React from "react";
-//import "./AdminDoctorEntity.css";
 import icon from "../icon.jpg";
 import "./PatientDoctorEntity.css";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminDoctoEntity(prop) {
-  const handleButtonClick = (e) => {
-    e.preventDefault();
-    const linkString = prop.doctor_login_id.id_approved
-      ? "http://localhost:8080/disapprove/"
-      : `http://localhost:8080/approve/`;
-    const reqOptions = {
-      method: "GET",
-      headers: { "content-type": "application/json" },
-    };
-    console.log(reqOptions);
-    //  alert(linkString + prop.doctor_login_id.login_id);
-    fetch(linkString + prop.doctor_login_id.login_id, reqOptions).then(
-      (resp) => {
-        window.location.reload();
-      }
-    );
-  };
+  const navigate = useNavigate();
 
-  const fetchDelete = () => {
-    fetch(`http://localhost:8080/deleteDoctor/${prop.doctorid}`, {
-      method: "DELETE",
-      headers: { "content-type": "application/json" },
-    }).then((resp) => {
-      alert("Deleted");
-      window.location.reload();
-    });
-  };
+  const BookAppointment = () => {
+    localStorage.setItem("doctorBookingId", prop.doctorid);
+    localStorage.setItem("doctorBookingfName", prop.first_name);
+    localStorage.setItem("doctorBookinglname", prop.last_name);
 
-  const handleDelete = (e) => {
-    e.preventDefault();
-    /* eslint-disable no-restricted-globals */
-    const result = confirm("Do you want to proceed?");
-    /* eslint-enable no-restricted-globals */
-    if (result) {
-      fetchDelete();
-    }
+    navigate("/getAppointment");
   };
 
   return (
@@ -62,21 +33,9 @@ export default function AdminDoctoEntity(prop) {
               <br />
             </p>
             <hr />
-            {/* <button
-            onClick={handleButtonClick}
-            className={`btn ${
-              prop.doctor_login_id.id_approved ? "btn-danger" : "btn-success"
-            }`}
-          >
-            {prop.doctor_login_id.id_approved ? "Disable" : "Approve"}
-          </button>
-          <button
-            className="btn btn-sm btn-outline-danger"
-            onClick={handleDelete}
-          >
-            <i class="bi bi-trash3"></i>Delete
-          </button> */}
-            <button className="btn btn-primary">Book Appointment</button>
+            <button className="btn btn-primary" onClick={BookAppointment}>
+              Book Appointment
+            </button>
 
             {prop.address}
           </div>
