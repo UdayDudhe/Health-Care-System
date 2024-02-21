@@ -52,9 +52,6 @@ function NavLinks() {
           )}
           {location.pathname === "/docHome" && (
             <>
-              <Link className="navbar-text" to="/docProfile">
-                Profile
-              </Link>
               <Link className="navbar-text" to="/setAppointment">
                 Set Appointment
               </Link>
@@ -103,6 +100,17 @@ function NavLinks() {
               <Link className="navbar-text" to="/docHome">
                 Home
               </Link>
+              <button className="btn btn-danger" onClick={handleLogout}>
+                Logout
+              </button>
+            </>
+          )}
+          {location.pathname === "/getAppointment" && (
+            <>
+              <Link className="navbar-text" to="/patientHome">
+                Home
+              </Link>
+
               <button className="btn btn-danger" onClick={handleLogout}>
                 Logout
               </button>

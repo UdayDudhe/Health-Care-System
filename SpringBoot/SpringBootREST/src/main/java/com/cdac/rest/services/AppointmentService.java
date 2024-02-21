@@ -1,5 +1,7 @@
 package com.cdac.rest.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,5 +21,9 @@ public class AppointmentService {
     	appointment.setStatus("Not Visited");
     	
         return appointmentRepository.save(appointment);
+    }
+    
+    public List<Appointment> getAppointmentsByDoctorIdAndDate(Integer doctorId, String appointmentDate) {
+        return appointmentRepository.findByDoctorIdAndAppointmentDate(doctorId, appointmentDate);
     }
 }
