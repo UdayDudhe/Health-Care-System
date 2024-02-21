@@ -38,23 +38,24 @@ function PatientBookAppointment() {
       console.log(
         JSON.stringify({
           doctorId: doctorId,
-          date: date,
-          selectedSlot: selectedSlot,
+          appointmentDate: date,
+          appointmentTime: selectedSlot,
           patientId: patientId,
-          reason: reason,
+          notes: reason,
         })
       );
 
-      fetch("http://localhost:8080/bookDoctor", {
+      fetch("http://localhost:8080/appointments/bookSlot", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           doctorId: doctorId,
-          date: date,
-          selectedSlot: selectedSlot,
-          reason: reason,
+          appointmentDate: date,
+          appointmentTime: selectedSlot,
+          patientId: patientId,
+          notes: reason,
         }),
       })
         .then((response) => response.json())
