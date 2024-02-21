@@ -69,7 +69,7 @@ function SetAppointment() {
     })
       .then((resp) => {
         if (resp.ok) {
-          return resp
+          return resp;
         } else {
           throw new Error("Cannot change status");
         }
@@ -77,6 +77,7 @@ function SetAppointment() {
       .then((obj) => {
         console.log(obj);
         alert("Added Appointment");
+        window.location.reload();
       })
       .catch((error) => alert("Server Error"));
   };
