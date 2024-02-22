@@ -4,6 +4,7 @@ function DoctorHomePage() {
   const [data, setData] = useState([]);
   const [date, setDate] = useState("");
   const loginID = localStorage.getItem("loginId");
+  const [updatedPrescription, setUpdatedPrescription] = useState("");
 
   const handleDateChange = (event) => {
     setDate(event.target.value);
@@ -58,10 +59,32 @@ function DoctorHomePage() {
       .then((resp) => {
         if (!resp.ok) {
           throw new Error("Failed to update appointment status");
+        } else {
         }
       })
       .catch((error) => {
         alert("Error updating appointment status:", error);
+      });
+    alert("Status updated");
+
+    handleButtonClick();
+  };
+
+  const updatePrescription = (appointmentId) => {
+    fetch(`http://localhost:8080/appointments/${appointmentId}/prescription`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ prescription: updatedPrescription }),
+    })
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error("Failed to update prescription");
+        }
+      })
+      .catch((error) => {
+        alert("Error updating prescription:", error);
       });
 
     fetchData();
@@ -98,10 +121,12 @@ function DoctorHomePage() {
                 <th>Appointment Time</th>
                 <th colSpan="2">Notes</th>
                 <th>Status</th>
+                <th colSpan="2">Prescription</th>
+                <th>Update</th>
               </tr>
             </thead>
             <tbody>
-              {data.map((appointment, index) => (
+              {data.map((appointment) => (
                 <tr key={appointment.id}>
                   <td>{appointment.id}</td>
                   <td>
@@ -122,6 +147,22 @@ function DoctorHomePage() {
                       <option value="Not Visited">Not Visited</option>
                       <option value="Visited">Visited</option>
                     </select>
+                  </td>
+                  <td colSpan="2">
+                    <input
+                      placeholder={appointment.prescription}
+                      onChange={(event) =>
+                        setUpdatedPrescription(event.target.value)
+                      }
+                    />
+                  </td>
+                  <td>
+                    <button
+                      type="button"
+                      onClick={() => updatePrescription(appointment.id)}
+                    >
+                      Update
+                    </button>
                   </td>
                 </tr>
               ))}
