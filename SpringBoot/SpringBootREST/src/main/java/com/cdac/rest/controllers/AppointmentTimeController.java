@@ -52,4 +52,11 @@ public class AppointmentTimeController {
     public List<AppointmentTime> getAllDoctorAppointments(@PathVariable String date, @PathVariable Integer doctorId) {
         return appointmentTimeService.getAppointmentTimesByDoctorAndDate(doctorId, date);
     }
+    
+    @GetMapping("/getByDoctorSlotAndDay/{doctorId}/{slotStart}/{date}")
+    public List<AppointmentTime> getByDoctorSlotAndDay(@PathVariable Integer doctorId,
+                                                      @PathVariable String slotStart,
+                                                      @PathVariable String date) {
+        return appointmentTimeService.getAppointmentTimesByDoctorSlotAndDate(doctorId, slotStart, date);
+    }
 }

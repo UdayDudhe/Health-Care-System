@@ -11,4 +11,5 @@ import com.cdac.rest.entities.AppointmentTime;
 public interface AppointmentTimeRepository extends JpaRepository<AppointmentTime, Integer> {
 	
 	 List<AppointmentTime> findByDoctorIdAndDay(Integer doctorId, String day);
+	 List<AppointmentTime> findByDoctorIdAndSlotStartAndDay(Integer doctorId, String slotStart, String day);
 }
