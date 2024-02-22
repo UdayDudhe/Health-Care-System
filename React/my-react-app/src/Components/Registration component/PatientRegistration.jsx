@@ -49,7 +49,7 @@ function PatientRegistration() {
         state: user.state.value,
       }),
     };
-    fetch("http://localhost:8080/registerpatient", reqOptions)
+    fetch("http://localhost:8080/registerPatient", reqOptions)
       .then((resp) => {
         if (resp.ok) {
           return resp.json(); 
