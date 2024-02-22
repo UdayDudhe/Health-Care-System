@@ -20,4 +20,7 @@ public class AppointmentTimeService {
     public List<AppointmentTime> getAppointmentTimesByDoctorAndDate(Integer doctorId, String date) {
         return appointmentTimeRepository.findByDoctorIdAndDay(doctorId, date);
     }
+    public List<AppointmentTime> getAppointmentTimesByDoctorSlotAndDate(Integer doctorId, String slotStart, String date) {
+        return appointmentTimeRepository.findByDoctorIdAndSlotStartAndDay(doctorId, slotStart, date);
+    }
 }

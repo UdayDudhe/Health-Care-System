@@ -98,4 +98,5 @@ public class DoctorRegistrationController {
 //            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to approve doctor.");
 //        }
 //    }
+	
 }
