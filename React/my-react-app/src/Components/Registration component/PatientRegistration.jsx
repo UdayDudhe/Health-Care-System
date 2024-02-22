@@ -156,7 +156,7 @@ function PatientRegistration() {
   return (
     <>
       <legend>Patient Registration</legend>
-      <p>{JSON.stringify(user)}</p>
+      {/* <p>{JSON.stringify(user)}</p> */}
       <div className="registration-container">
         <form
           className="form-horizontal needs-validation"
