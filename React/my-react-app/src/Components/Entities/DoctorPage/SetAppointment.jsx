@@ -97,6 +97,7 @@ function SetAppointment() {
                   type="date"
                   value={date}
                   onChange={handleDateChange}
+                  min={new Date().toISOString().split("T")[0]}
                   required
                 />
               </label>
