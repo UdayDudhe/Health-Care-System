@@ -35,6 +35,17 @@ public class AppointmentPatientAssociationEntity {
 
     @Column(name = "status")
     private String status;
+    
+    @Column(name="prescription")
+    private String prescription;
+    
+	public String getPrescription() {
+		return prescription;
+	}
+
+	public void setPrescription(String prescription) {
+		this.prescription = prescription;
+	}
 
 	public Integer getId() {
 		return id;
