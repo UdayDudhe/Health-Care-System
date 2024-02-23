@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function ViewAllDocAppointment() {
+function ViewPatAppointment() {
   const [data, setData] = useState([]);
   const loginID = localStorage.getItem("loginId");
 
@@ -9,8 +9,9 @@ function ViewAllDocAppointment() {
   }, []);
 
   const fetchData = () => {
+    console.log(`http://localhost:8080/appointments/getAppointments/${loginID}`)
     fetch(
-      `http://localhost:8080/appointments/getDoctorAppointments/${loginID}`,
+      `http://localhost:8080/appointments/getAppointments/${loginID}`,
       {
         method: "GET",
         headers: {
@@ -27,6 +28,7 @@ function ViewAllDocAppointment() {
       })
       .then((data) => {
         setData(data);
+        console.log(data);
       })
       .catch((error) => {
         alert("Error Getting appointment:", error);
@@ -35,13 +37,13 @@ function ViewAllDocAppointment() {
 
   return (
     <div className="container mt-4">
-      <legend>View All Appointments</legend>
+      <legend>View Appointments</legend>
       <div className="table-responsive">
         <table className="table table-striped">
           <thead>
             <tr>
               <th className="text-center">Appointment ID</th>
-              <th className="text-center">Patient Name</th>
+              <th className="text-center">Doctor Name</th>
               <th className="text-center">Phone Number</th>
               <th className="text-center">Appointment Date</th>
               <th className="text-center">Appointment Time</th>
@@ -55,11 +57,11 @@ function ViewAllDocAppointment() {
               <tr key={appointment.id}>
                 <td className="text-center">{appointment.id}</td>
                 <td className="text-center">
-                  {appointment.patientId.first_name}{" "}
-                  {appointment.patientId.last_name}
+                  {appointment.doctorId.first_name}{" "}
+                  {appointment.doctorId.last_name}
                 </td>
                 <td className="text-center">
-                  {appointment.patientId.phone_number}
+                  {appointment.doctorId.phonenumber}
                 </td>
                 <td className="text-center">{appointment.appointmentDate}</td>
                 <td className="text-center">{appointment.appointmentTime}</td>
@@ -75,4 +77,4 @@ function ViewAllDocAppointment() {
   );
 }
 
-export default ViewAllDocAppointment;
+export default ViewPatAppointment;

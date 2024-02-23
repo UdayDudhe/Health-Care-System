@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 function DoctorHomePage() {
   const [data, setData] = useState([]);
   const [date, setDate] = useState("");
@@ -156,12 +155,12 @@ function DoctorHomePage() {
                       onChange={(event) =>
                         setUpdatedPrescription(event.target.value)
                       }
-
                     />
                   </td>
                   <td>
                     <button
                       type="button"
+                      className="btn btn-outline-primary"
                       onClick={() => updatePrescription(appointment.id)}
                     >
                       Update
