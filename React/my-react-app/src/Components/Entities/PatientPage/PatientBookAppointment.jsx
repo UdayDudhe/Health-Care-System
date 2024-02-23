@@ -30,7 +30,12 @@ function PatientBookAppointment() {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-
+  
+    if (!date || new Date(date) <= new Date()) {
+      alert("Please select a valid future date");
+      return;
+    }
+  
     if (!isSlotSelected) {
       alert("Please select a slot");
       return;
@@ -44,7 +49,7 @@ function PatientBookAppointment() {
           notes: reason,
         })
       );
-
+  
       fetch("http://localhost:8080/appointments/bookSlot", {
         method: "POST",
         headers: {
@@ -67,6 +72,7 @@ function PatientBookAppointment() {
         });
     }
   };
+  
 
   const filteredAppointments = data.filter(
     (appointment) => appointment.flag === 1
@@ -105,6 +111,7 @@ function PatientBookAppointment() {
             type="date"
             value={date}
             onChange={handleDateChange}
+            min={new Date()}
             required
           />
         </label>
