@@ -23,4 +23,8 @@ public class AppointmentTimeService {
     public List<AppointmentTime> getAppointmentTimesByDoctorSlotAndDate(Integer doctorId, String slotStart, String date) {
         return appointmentTimeRepository.findByDoctorIdAndSlotStartAndDay(doctorId, slotStart, date);
     }
+    
+    public void saveAllAppointmentTimes(List<AppointmentTime> appointmentTimes) {
+        appointmentTimeRepository.saveAll(appointmentTimes);
+    }
 }
