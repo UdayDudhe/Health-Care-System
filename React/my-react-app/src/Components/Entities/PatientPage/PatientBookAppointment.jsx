@@ -31,10 +31,10 @@ function PatientBookAppointment() {
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    if (!date || new Date(date) <= new Date()) {
-      alert("Please select a valid future date");
-      return;
-    }
+    // if (!date || new Date(date) <= new Date()) {
+    //   alert("Please select a valid future date");
+    //   return;
+    // }
 
     if (!isSlotSelected) {
       alert("Please select a slot");
@@ -68,9 +68,8 @@ function PatientBookAppointment() {
           alert("Appointment booked successfully:", data);
         })
         .catch((error) => {
-          alert("Error booking appointment:", error);
+         // alert("Error booking appointment:", error);
         });
-
         window.location.reload();
     }
   };
@@ -120,6 +119,7 @@ function PatientBookAppointment() {
         <button type="button" onClick={fetchAvailableSlots}>
           Check Available Slots
         </button>
+        <br />
         <div>
           <div className="container">
             <div className="row">
@@ -142,7 +142,7 @@ function PatientBookAppointment() {
             </div>
           </div>
         </div>
-
+        <br />
         <label>
           Reason
           <br />

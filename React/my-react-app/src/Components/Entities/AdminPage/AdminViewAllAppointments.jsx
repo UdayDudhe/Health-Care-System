@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function ViewAllDocAppointment() {
+function AdminViewAllAppointments() {
   const [data, setData] = useState([]);
   const loginID = localStorage.getItem("loginId");
 
@@ -9,15 +9,15 @@ function ViewAllDocAppointment() {
   }, []);
 
   const fetchData = () => {
-    fetch(
-      `http://localhost:8080/appointments/getDoctorAppointments/${loginID}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    console.log(
+      `http://localhost:8080/appointments/getall`
+    );
+    fetch(`http://localhost:8080/appointments/getall`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((resp) => {
         if (resp.ok) {
           return resp.json();
@@ -27,22 +27,23 @@ function ViewAllDocAppointment() {
       })
       .then((data) => {
         setData(data);
+        console.log(data);
       })
       .catch((error) => {
-        alert("Error Getting appointment:", error);
+        console.log("Error Getting appointment:", error);
       });
   };
 
   return (
     <div className="container mt-4">
-      <legend>View All Appointments</legend>
+      <legend>View Appointments</legend>
       <div className="table-responsive">
         <table className="table table-striped">
           <thead>
             <tr>
               <th className="text-center">Appointment ID</th>
+              <th className="text-center">Doctor Name</th>
               <th className="text-center">Patient Name</th>
-              <th className="text-center">Phone Number</th>
               <th className="text-center">Appointment Date</th>
               <th className="text-center">Appointment Time</th>
               <th className="text-center">Notes</th>
@@ -55,11 +56,11 @@ function ViewAllDocAppointment() {
               <tr key={appointment.id}>
                 <td className="text-center">{appointment.id}</td>
                 <td className="text-center">
-                  {appointment.patientId.first_name}{" "}
-                  {appointment.patientId.last_name}
+                  {appointment.doctorId.first_name}{" "}
+                  {appointment.doctorId.last_name}
                 </td>
                 <td className="text-center">
-                  {appointment.patientId.phone_number}
+                  {appointment.patientId.first_name}{" "}{appointment.patientId.last_name}
                 </td>
                 <td className="text-center">{appointment.appointmentDate}</td>
                 <td className="text-center">{appointment.appointmentTime}</td>
@@ -75,4 +76,4 @@ function ViewAllDocAppointment() {
   );
 }
 
-export default ViewAllDocAppointment;
+export default AdminViewAllAppointments;

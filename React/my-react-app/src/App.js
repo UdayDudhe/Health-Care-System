@@ -14,6 +14,8 @@ import AdminAllPatient from './Components/Entities/AdminPage/AdminAllPatient.jsx
 import SetAppointment from './Components/Entities/DoctorPage/SetAppointment.jsx';
 import PatientBookAppointment from './Components/Entities/PatientPage/PatientBookAppointment.jsx';
 import ViewAllDocAppointment from './Components/Entities/DoctorPage/ViewAllDocAppointment.jsx';
+import ViewPatAppointment from './Components/Entities/PatientPage/ViewPatAppointment.jsx';
+import AdminViewAllAppointments from './Components/Entities/AdminPage/AdminViewAllAppointments.jsx';
 
 function App() {
   return (
@@ -35,7 +37,11 @@ function App() {
           <Route path="/setAppointment" element={< SetAppointment />} />
           <Route path="/getAppointment" element={<PatientBookAppointment />} />
           <Route path="/viewAllDocAppointment" element={< ViewAllDocAppointment />} />
+          <Route path="/viewAllPatAppointment" element={< ViewPatAppointment />} />
+          <Route path="/AdminViewAllAppointments" element={< AdminViewAllAppointments />} />
 
+
+          
 
         </Routes>
       </BrowserRouter>
