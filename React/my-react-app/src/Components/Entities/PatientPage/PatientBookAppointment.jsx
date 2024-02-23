@@ -30,12 +30,12 @@ function PatientBookAppointment() {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-  
+
     if (!date || new Date(date) <= new Date()) {
       alert("Please select a valid future date");
       return;
     }
-  
+
     if (!isSlotSelected) {
       alert("Please select a slot");
       return;
@@ -49,7 +49,7 @@ function PatientBookAppointment() {
           notes: reason,
         })
       );
-  
+
       fetch("http://localhost:8080/appointments/bookSlot", {
         method: "POST",
         headers: {
@@ -70,9 +70,10 @@ function PatientBookAppointment() {
         .catch((error) => {
           alert("Error booking appointment:", error);
         });
+
+        window.location.reload();
     }
   };
-  
 
   const filteredAppointments = data.filter(
     (appointment) => appointment.flag === 1
@@ -111,12 +112,13 @@ function PatientBookAppointment() {
             type="date"
             value={date}
             onChange={handleDateChange}
-            min={new Date()}
+            //min={new Date()}
+            min={new Date().toISOString().split("T")[0]}
             required
           />
         </label>
         <button type="button" onClick={fetchAvailableSlots}>
-          Check Avaialbe Slots
+          Check Available Slots
         </button>
         <div>
           <div className="container">

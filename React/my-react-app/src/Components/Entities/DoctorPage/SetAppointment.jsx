@@ -102,7 +102,7 @@ function SetAppointment() {
                 />
               </label>
               <label>
-                Starting Time
+                First Slot
                 <input
                   type="time"
                   value={startTime}
@@ -111,7 +111,7 @@ function SetAppointment() {
                 />
               </label>
               <label>
-                End Time
+                Last Slot
                 <input
                   type="time"
                   value={endTime}

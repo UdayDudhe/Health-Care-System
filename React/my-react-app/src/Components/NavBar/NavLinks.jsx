@@ -55,6 +55,9 @@ function NavLinks() {
               <Link className="navbar-text" to="/setAppointment">
                 Set Appointment
               </Link>
+              <Link className="navbar-text" to="/viewAllDocAppointment">
+                View All Appointments
+              </Link>
             </>
           )}
           {location.pathname === "/docProfile" && (

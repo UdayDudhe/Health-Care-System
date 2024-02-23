@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cdac.rest.entities.Appointment;
+import com.cdac.rest.entities.DoctorRegistrationEntity;
+import com.cdac.rest.entities.PatientRegistrationEntity;
 import com.cdac.rest.repositories.AppointmentRepository;
 
 @Service
@@ -27,11 +29,23 @@ public class AppointmentService {
         return appointmentRepository.save(appointment);
     }
     
-    public List<Appointment> getAppointmentsByDoctorIdAndDate(Integer doctorId, String appointmentDate) {
+    public List<Appointment> getAppointmentsByDoctorIdAndDate(DoctorRegistrationEntity doctorId, String appointmentDate) {
         return appointmentRepository.findByDoctorIdAndAppointmentDate(doctorId, appointmentDate);
     }
     
     public Appointment getAppointmentById(Integer appointmentId) {
         return appointmentRepository.findById(appointmentId).orElse(null);
+    }
+    
+    public List<Appointment> getAppointmentsByPatientId(PatientRegistrationEntity patientId) {
+        return appointmentRepository.findByPatientId(patientId);
+    }
+    
+    public List<Appointment> getAllAppointments() {
+        return appointmentRepository.findAll();
+    }
+    
+    public List<Appointment> getAppointmentsByDoctorLoginId(DoctorRegistrationEntity doctorLoginId){
+    	return appointmentRepository.findByDoctorId(doctorLoginId);
     }
 }

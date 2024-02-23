@@ -5,21 +5,27 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "appointments")
 public class Appointment {
+	
+	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ap_id")
     private Integer id;
 
-    @Column(name = "patient_id")
-    private Integer patientId;
+    @ManyToOne
+	@JoinColumn(name = "patient_id")
+	private PatientRegistrationEntity patientId;
 
-    @Column(name = "doctor_id")
-    private Integer doctorId;
+    @ManyToOne
+    @JoinColumn(name = "doctor_id")
+    private DoctorRegistrationEntity doctorId;
 
     @Column(name = "appointment_date")
     private String appointmentDate;
@@ -35,14 +41,29 @@ public class Appointment {
 
     @Column(name="prescription")
     private String prescription;
+    
+    
+    
 
-	public String getPrescription() {
-		return prescription;
+	public Appointment() {
+		super();
+	}
+	
+	
+	
+
+	public Appointment(PatientRegistrationEntity patientId, DoctorRegistrationEntity doctorId, String appointmentDate,
+			String appointmentTime, String notes) {
+		super();
+		this.patientId = patientId;
+		this.doctorId = doctorId;
+		this.appointmentDate = appointmentDate;
+		this.appointmentTime = appointmentTime;
+		this.notes = notes;
 	}
 
-	public void setPrescription(String prescription) {
-		this.prescription = prescription;
-	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -52,19 +73,19 @@ public class Appointment {
 		this.id = id;
 	}
 
-	public Integer getPatientId() {
+	public PatientRegistrationEntity getPatientId() {
 		return patientId;
 	}
 
-	public void setPatientId(Integer patientId) {
+	public void setPatientId(PatientRegistrationEntity patientId) {
 		this.patientId = patientId;
 	}
 
-	public Integer getDoctorId() {
+	public DoctorRegistrationEntity getDoctorId() {
 		return doctorId;
 	}
 
-	public void setDoctorId(Integer doctorId) {
+	public void setDoctorId(DoctorRegistrationEntity doctorId) {
 		this.doctorId = doctorId;
 	}
 
@@ -100,5 +121,14 @@ public class Appointment {
 		this.status = status;
 	}
 
-  
+	public String getPrescription() {
+		return prescription;
+	}
+
+	public void setPrescription(String prescription) {
+		this.prescription = prescription;
+	}
+
+	
+	
 }

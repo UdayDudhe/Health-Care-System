@@ -76,7 +76,7 @@ function DoctorHomePage() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ prescription: updatedPrescription }),
+      body: updatedPrescription,
     })
       .then((resp) => {
         if (!resp.ok) {
@@ -88,6 +88,7 @@ function DoctorHomePage() {
       });
 
     fetchData();
+    handleButtonClick();
   };
 
   return (
@@ -150,10 +151,12 @@ function DoctorHomePage() {
                   </td>
                   <td colSpan="2">
                     <input
-                      placeholder={appointment.prescription}
+                      defaultValue={appointment.prescription}
+                      //placeholder={appointment.prescription}
                       onChange={(event) =>
                         setUpdatedPrescription(event.target.value)
                       }
+
                     />
                   </td>
                   <td>
