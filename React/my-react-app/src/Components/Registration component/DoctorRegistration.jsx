@@ -1,9 +1,35 @@
 // DoctorRegistration.js
-import React, { useReducer } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import "./DoctorRegistration.css";
 import { useNavigate } from "react-router-dom";
 
 function DoctorRegistration() {
+
+  useEffect(() => {
+    fetchSpecializations();
+  }, []);
+
+  const [specializations, setSpecializations] = useState([]);
+
+  const fetchSpecializations = () => {
+    fetch("https://localhost:7235/api/Specializations")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch specializations");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setSpecializations(data);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching specializations:", error.message);
+      });
+  };
+
+
+
   const init = {
     userName: { value: "", valid: false, touched: false, error: "" },
     password: { value: "", valid: false, touched: false, error: "" },
@@ -17,7 +43,7 @@ function DoctorRegistration() {
     email: { value: "", valid: false, touched: false, error: "" },
     gender: { value: "", valid: false, touched: false, error: "" },
     description: { value: "", valid: false, touched: false, error: "" },
-    specialization: { value: "", valid: false, touched: false, error: "" },
+    specialization: { value: "Specialization", valid: false, touched: false, error: "" },
     education: { value: "", valid: false, touched: false, error: "" },
     experience: { value: "", valid: false, touched: false, error: "" },
     formValid: false,
@@ -37,6 +63,25 @@ function DoctorRegistration() {
   const navigate = useNavigate();
 
   const sendData = (e) => {
+
+    console.log(JSON.stringify({
+      username: user.userName.value,
+      password: user.password.value,
+      first_name: user.firstName.value,
+      last_name: user.lastName.value,
+      address: user.address.value,
+      phonenumber: user.contactNo.value,
+      email: user.email.value,
+      gender: user.gender.value,
+      description: user.description.value,
+      specialization: user.specialization.value,
+      education: user.education.value,
+      city: user.city.value,
+      pincode: user.pincode.value,
+      state: user.state.value,
+      experience: user.experience.value,
+    }));
+
     e.preventDefault();
     const reqOptions = {
       method: "POST",
@@ -562,7 +607,7 @@ function DoctorRegistration() {
                     specialization
                   </label>
                 </td>
-                <td>
+                {/* <td>
                   <input
                     type="text"
                     className="form-control"
@@ -576,7 +621,27 @@ function DoctorRegistration() {
                     required
                   />
                   <small className="text-help">Required</small>
-                </td>
+                </td> */}
+                 <td>
+              <select
+                className="form-control"
+                id="specialization"
+                name="specialization"
+                value={user.specialization.value}
+                onChange={(e) =>
+                  handleChange("specialization", e.target.value)
+                }
+                required
+              >
+                <option value="">Select Specialization</option>
+                {specializations.map((spec) => (
+                  <option key={spec.spid} value={spec.specialization1}>
+                    {spec.specialization1}
+                  </option>
+                ))}
+              </select>
+              <small className="text-help">Required</small>
+            </td>
               </tr>
               <tr>
                 <td>
