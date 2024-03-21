@@ -1,2 +1,10 @@
 
 SpringBoot/SpringBootREST/mvnw
+DotNet/HealthCareApp/bin/Debug/net8.0/tr/Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+*.dll
+*.cache
+*.json
+*.props
+/DotNet/HealthCareApp/obj/Debug
+*.vsidx
+*.v2
