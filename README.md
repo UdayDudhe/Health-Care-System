@@ -1,17 +1,17 @@
-Project Overview
+# Project Overview
 
 This project is structured into two main parts:
 
    - Frontend: The part of the app you see and interact with, built with React.js.
    - Backend: Handles data storage and retrieval, built with Java Spring Boot  and C# .Net
 
-Features
+## Features
 
    - User Authentication: Sign up, log in, and log out securely.
    - Create, Read, Update, Delete (CRUD) Operations: Managing appointments, patients, doctors.
    - Responsive Design: Works well on different screen sizes wtih help of bootstrap.
 
-Technologies Used
+## Technologies Used
 
    - Frontend: React.js, React Router, Bootstrap
    - Backend: Java Spring Boot, C# .net
