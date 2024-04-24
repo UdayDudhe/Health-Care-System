@@ -19,6 +19,18 @@ This project is structured into two main parts:
    - Authentication: JSON Web Tokens (JWT)
    - Other Libraries: bcrypt (for password hashing), Spring Data JPA (perform CRUD operations) etc.
 
+## Business Components
+![image](https://github.com/SankalpKokare/Health-Care-System/assets/82757623/a3238c77-5ddd-419b-a7af-b25870910c77)
+
+## Admin Workflow Diagram
+![image](https://github.com/SankalpKokare/Health-Care-System/assets/82757623/e50b4ce3-b9ff-4da4-b7ad-dda6fe95d993)
+
+## Patient Workflow Diagram
+![image](https://github.com/SankalpKokare/Health-Care-System/assets/82757623/7358a3be-8476-4f96-9ca7-980224a712bf)
+
+## Doctor Workflow Diagram
+![image](https://github.com/SankalpKokare/Health-Care-System/assets/82757623/0a0b6117-1b0e-407c-be61-5d88e271b294)
+
 ## Patient Registration Page
 ![Untitled](https://github.com/SankalpKokare/Health-Care-System/assets/82757623/0e767e8f-e4f6-417c-8e55-055944934059)
 
