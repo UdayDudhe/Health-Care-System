@@ -22,8 +22,6 @@ function LoginPage() {
   };
 
   const navigate = useNavigate();
-
-  //dispatch to modify info object
   const [info, dispatch] = useReducer(reducer, init);
   const [msg, setMsg] = useState("");
   const sendData = (e) => {
@@ -35,14 +33,11 @@ function LoginPage() {
     };
     fetch("http://localhost:8080/verifyLogin", reqOptions)
       .then((resp) => {
-        if (resp.ok) {
-          return resp.text();
-        } else {
-          throw new Error("Service Error");
+        if (!resp.ok) {
+          throw new Error(`Service Error: ${resp.status}`);
         }
+        return resp.text();
       })
-     //  .then((resp) => console.log(resp))
-      // .then((resp) => resp.text())
       .then((text) => (text.length ? JSON.parse(text) : {}))
       .then((obj) => {
         if (Object.keys(obj).length === 0) {
@@ -51,7 +46,7 @@ function LoginPage() {
           localStorage.setItem('loginId', obj.login_id); 
           localStorage.setItem('username', obj.username);
           if (obj.id_approved === false) {
-           setMsg("Request not approved");
+            setMsg("Request not approved");
           } else {
             if (obj.role_id.roleid === 1) {
               navigate("/adminDoctor");
@@ -66,7 +61,6 @@ function LoginPage() {
       .catch((error) => {
         navigate("/serverError");
       });
-    //.then((obj)=>{console.log(obj)})
   };
 
   return (
@@ -110,11 +104,10 @@ function LoginPage() {
               }}
             />
           </div>
-          
 
           <div className="button-container">
             <button
-              type=""
+              type="submit"
               className="btn btn-primary"
               onClick={(e) => sendData(e)}
             >
